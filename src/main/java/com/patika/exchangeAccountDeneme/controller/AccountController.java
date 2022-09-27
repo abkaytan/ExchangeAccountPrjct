@@ -28,27 +28,6 @@ public class AccountController {
     }
 
 
-
-    @PostMapping("/signin")
-    @ApiOperation(value = "Customer - SIGN IN ")
-    @ApiResponses(value = {//
-            @ApiResponse(code = 400, message = "Something went wrong"), //
-            @ApiResponse(code = 422, message = "Invalid username/password supplied")})
-    public ResponseEntity<String> login(//
-                        @ApiParam("Username") @RequestParam String username, //
-                        @ApiParam("Password") @RequestParam String password) {
-        String result = accountServiceImpl.signin(username, password);
-        return new ResponseEntity<>(result, HttpStatus.OK);
-    }
-
-
-
-    /*@PostMapping("/save-customer")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerDTO customerDTO){
-        Customer customer = accountServiceImpl.saveCustomer(customerDTO);
-        return new ResponseEntity<>(customer, HttpStatus.OK);
-    }*/
-
     @GetMapping("/balance/{id}")
     public ResponseEntity<AccountDTO> showAccountBalance(@PathVariable long id){
         AccountDTO accountDTO = accountServiceImpl.showAccountBalance(id);
@@ -60,4 +39,22 @@ public class AccountController {
         List<AccountDetailsDTO> accountDetailsDTOList = accountServiceImpl.showAccountOperationDetails(id);
         return new ResponseEntity<>(accountDetailsDTOList, HttpStatus.OK);
     }
+
+    /*@PostMapping("/save-customer")
+    public ResponseEntity<Customer> saveCustomer(@RequestBody CustomerDTO customerDTO){
+        Customer customer = accountServiceImpl.saveCustomer(customerDTO);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
+    }*/
+
+    /*@PostMapping("/signin")
+    @ApiOperation(value = "Customer - SIGN IN ")
+    @ApiResponses(value = {//
+            @ApiResponse(code = 400, message = "Something went wrong"), //
+            @ApiResponse(code = 422, message = "Invalid username/password supplied")})
+    public ResponseEntity<String> login(//
+                        @ApiParam("Username") @RequestParam String username, //
+                        @ApiParam("Password") @RequestParam String password) {
+        String result = accountServiceImpl.signin(username, password);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }*/
 }

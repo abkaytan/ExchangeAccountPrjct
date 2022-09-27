@@ -33,7 +33,6 @@ public class AccountServiceImpl implements AccountService {
 
     }
 
-    HashMap<Long, String> tokenStore = new HashMap<>();
 
     @Override
     public String signin(String username, String password)  {
@@ -116,12 +115,10 @@ public class AccountServiceImpl implements AccountService {
             AccountDetailsDTO accountDetailsDTO = new AccountDetailsDTO();
 
             accountDetailsDTO.setOperation(map.getOperation());
-            /*accountDetailsDTO.setCurrency(map.getCurrency());*/
             accountDetailsDTO.setSummary(map.getSummary());
             accountDetailsDTOList.add(accountDetailsDTO);
 
         }
-
         return accountDetailsDTOList;
     }
 

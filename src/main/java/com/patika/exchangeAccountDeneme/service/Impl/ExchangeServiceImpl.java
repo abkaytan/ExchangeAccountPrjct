@@ -4,22 +4,15 @@ import com.patika.exchangeAccountDeneme.dto.AccountDetailsDTO;
 import com.patika.exchangeAccountDeneme.dto.ExchangeDTO;
 import com.patika.exchangeAccountDeneme.entity.Account;
 import com.patika.exchangeAccountDeneme.entity.AccountDetails;
-import com.patika.exchangeAccountDeneme.entity.Login;
 import com.patika.exchangeAccountDeneme.entity.enumeration.Currency;
 import com.patika.exchangeAccountDeneme.exceptions.NotEnoughBalance;
 import com.patika.exchangeAccountDeneme.repository.AccountDetailsRepository;
-import com.patika.exchangeAccountDeneme.repository.LoginRepository;
 import com.patika.exchangeAccountDeneme.service.ExchangeService;
 import com.patika.exchangeAccountDeneme.service.Impl.operation.Converter;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.*;
 
-import static java.util.Collections.emptyList;
 
 @Service
 public class ExchangeServiceImpl implements ExchangeService {
@@ -37,7 +30,7 @@ public class ExchangeServiceImpl implements ExchangeService {
     @Override
     public Optional<AccountDetailsDTO> operateExchange(ExchangeDTO exchangeDTO) {
         Account account = accountServiceImpl.getAccountById(exchangeDTO.getCustomerId());
-        Queue<Double> resultAndRate = new LinkedList<>();
+        Queue<Double> resultAndRate;
 
         double amount = exchangeDTO.getAmount();
         resultAndRate = converter.convert(exchangeDTO.getBuy(),exchangeDTO.getSell(), exchangeDTO.getAmount());
