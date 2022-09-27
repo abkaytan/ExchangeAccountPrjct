@@ -19,10 +19,5 @@ public class Converter {
         return  resultAndRate;
     }
 
-    /*public double convert(Currency currency1, Currency currency2, double amount){
-        ExchangeRate exchangeRate = new ExchangeRate();
-        double rate = exchangeRate.findExchangeRate(currency1, currency2);
-        return  amount/rate;
-    }*/
 
 }

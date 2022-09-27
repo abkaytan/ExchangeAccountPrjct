@@ -1,8 +1,9 @@
 package com.patika.exchangeAccountDeneme.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.patika.exchangeAccountDeneme.entity.enumeration.Currency;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
 @Entity
 @Table(name = "account_details")
@@ -29,7 +31,7 @@ public class AccountDetails {
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    /*private Currency currency;*/
+
     private double operation;
 
     private String summary;
@@ -38,7 +40,5 @@ public class AccountDetails {
     private long accountId;
 
 
-    /*@ManyToOne
-    private Account account;*/
 
 }

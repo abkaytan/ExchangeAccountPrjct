@@ -38,13 +38,13 @@ public class ExchangeServiceImpl implements ExchangeService {
         double rate = resultAndRate.poll();
 
         Currency sold = exchangeDTO.getSell();
-        switch (sold){
+        switch (sold){   // sell
             case TRY -> account.setTl(account.getTl()-difference);
             case GOLD -> account.setGold(account.getGold()-difference);
             case EURO -> account.setEuro(account.getEuro()-difference);
             case DOLLAR -> account.setDollar(account.getDollar()-difference);
         }
-        switch (exchangeDTO.getBuy()){
+        switch (exchangeDTO.getBuy()){  // buy
             case TRY -> account.setTl(account.getTl()+amount);
             case GOLD -> account.setGold(account.getGold()+amount);
             case EURO -> account.setEuro(account.getEuro()+amount);
@@ -55,7 +55,9 @@ public class ExchangeServiceImpl implements ExchangeService {
         if(!balanceChecker){
             throw new NotEnoughBalance("not enough balance");
         } else {
-            accountServiceImpl.saveAccount(account);
+
+            accountServiceImpl.saveAccount(account);  // after balance control updating account on database
+
             AccountDetails accountDetails = new AccountDetails();
             accountDetails.setOperation(exchangeDTO.getAmount());
             accountDetails.setSummary("buy" + " ["+ exchangeDTO.getAmount() + "]" +
@@ -63,6 +65,7 @@ public class ExchangeServiceImpl implements ExchangeService {
                     "[" + exchangeDTO.getBuy() +" & " + exchangeDTO.getSell() + " " + String.format("%.2f", rate) +"]");
             accountDetails.setAccountId(exchangeDTO.getAccountId());
             accountDetailsRepository.save(accountDetails);
+            accountDetailsDTO.setCurrency(exchangeDTO.getBuy());
             accountDetailsDTO.setOperation(accountDetails.getOperation());
             accountDetailsDTO.setSummary(accountDetails.getSummary());
         }

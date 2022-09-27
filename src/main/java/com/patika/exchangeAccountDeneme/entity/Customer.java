@@ -18,16 +18,13 @@ import javax.persistence.*;
 @Table(name = "customer")
 public class Customer extends AbstractBaseEntity{
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;*/
+
 
 
     private String fullName;
     private String password;
 
 
-    /*@OneToOne(mappedBy = "customer", fetch = FetchType.EAGER)
-    private Account account;*/
+
 
 }
