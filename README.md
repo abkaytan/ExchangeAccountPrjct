@@ -37,7 +37,7 @@ Example @RequestBody to exchange :
 ```json
 {
   "buy": "TRY",
-  "amount": "JWT",
+  "amount": 20,
   "sell": "DOLLAR",
   "customerId": 1,
   "accountId": 1
